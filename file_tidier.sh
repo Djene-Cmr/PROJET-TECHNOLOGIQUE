@@ -1,5 +1,4 @@
-#!/bin/bash
-
+#!/bin/bash 
 # ============================
 # File-Tidier - Tri automatique de fichiers
 # ============================
@@ -44,6 +43,7 @@ get_destination_folder() {
         text/plain|application/msword|application/vnd*) echo "Documents" ;;
         *) echo "Autres" ;;
     esac
+    
 }
 
 # Traitement des fichiers
