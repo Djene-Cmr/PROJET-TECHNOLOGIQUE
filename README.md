@@ -11,9 +11,9 @@
 
 ## 👥 Membres du groupe
 
-- **Jean Claude SIBAFEU** – Développement principal, structure du script  
-- **DJénè CAMARA** – Tests, gestion du dépôt Git, journalisation, README 
-- **Mohamoud Touré** – Documentation, support de soutenance  
+- **Jean Claude SIBAFEU** – Développement principal, structure du script, Tests  
+- **DJénè CAMARA** – Tests, gestion du dépôt Git, journalisation, README, support de soutenance 
+- **Mohamoud Touré** – Documentation(structure du script), support de soutenance 
 
 ---
 
