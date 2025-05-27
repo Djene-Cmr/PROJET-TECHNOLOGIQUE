@@ -1,2 +1,104 @@
 #!/bin/bash
-dctfvbhu hnjijihnnh
+
+# ============================
+# File-Tidier - Tri multi-dossiers
+# ============================
+
+# Mode test (dry-run)
+DRY_RUN=false
+
+# Affiche l'aide
+show_help() {
+    echo "Usage: $0 [répertoire1] [répertoire2] ... [options]"
+    echo ""
+    echo "Options :"
+    echo "  -t, --test       Mode test (aucun fichier déplacé)"
+    echo "  -h, --help       Affiche cette aide"
+    echo ""
+    echo "Exemple : $0 ~/Téléchargements ~/Bureau -t"
+}
+
+# Journalisation
+log_action() {
+    echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$1/file_tidier.log"
+}
+
+# Crée les dossiers de destination
+create_folders() {
+    local dir="$1"
+    mkdir -p "$dir"/{Images,PDFs,Archives,Documents,Autres}
+}
+
+# Détermine le dossier de destination selon le type MIME
+get_destination_folder() {
+    local mime_type="$1"
+    case "$mime_type" in
+        image/*) echo "Images" ;;
+        application/pdf) echo "PDFs" ;;
+        application/zip|application/x-tar|application/x-gzip|application/x-7z-compressed) echo "Archives" ;;
+        text/plain|application/msword|application/vnd*) echo "Documents" ;;
+        *) echo "Autres" ;;
+    esac
+}
+
+# Traitement des fichiers dans un dossier
+process_directory() {
+    local dir="$1"
+    create_folders "$dir"
+
+    for file in "$dir"/*; do
+        [ -f "$file" ] || continue
+        mime_type=$(file --mime-type -b "$file")
+        dest_folder=$(get_destination_folder "$mime_type")
+        dest_path="$dir/$dest_folder/$(basename "$file")"
+
+        if [ "$DRY_RUN" = true ]; then
+            echo "[TEST] $file → $dest_path"
+        else
+            mv "$file" "$dir/$dest_folder/"
+            log_action "$dir" "Déplacé: $(basename "$file") → $dest_folder/"
+        fi
+    done
+}
+
+# ============================
+# Programme principal
+# ============================
+
+# Récupération des arguments
+DIRS=()
+
+while [[ "$1" != "" ]]; do
+    case "$1" in
+        -t|--test) DRY_RUN=true ;;
+        -h|--help) show_help; exit 0 ;;
+        -*)
+            echo "Option inconnue : $1"
+            show_help
+            exit 1
+            ;;
+        *)
+            DIRS+=("$1")
+            ;;
+    esac
+    shift
+done
+
+# Vérifie qu'au moins un dossier est donné
+if [ ${#DIRS[@]} -eq 0 ]; then
+    echo "Erreur : aucun dossier fourni."
+    show_help
+    exit 1
+fi
+
+# Traitement de chaque dossier
+for dir in "${DIRS[@]}"; do
+    if [ -d "$dir" ]; then
+        echo "📁 Traitement de : $dir"
+        process_directory "$dir"
+    else
+        echo "⚠️  Dossier introuvable : $dir"
+    fi
+done
+
+echo "✅ Tri terminé."
