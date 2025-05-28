@@ -51,10 +51,12 @@ chmod +x file-tidier.sh
 ### 2. Lancer le script
 
 ```bash
-./file-tidier.sh                     # Tri de ~/Téléchargements (par défaut)
-./file-tidier.sh ~/Bureau            # Tri d’un dossier spécifique
-./file-tidier.sh ~/Bureau -t         # Mode test (aucun fichier déplacé)
-./file-tidier.sh -h                  # Affiche l’aide
+ls                                   # liste des différents fichiers 
+chmod +x file.sh                     # Demarrer et rendre le script exécutable 
+./file.sh                            # exécuter véritablement le script ( déplacement des fichiers en fonction de leur extensions dans les sous dossiers 
+                                     respectifs) 
+./file.sh -t                         # tester le script pour s'assurer les consignes sont respectées
+./file.sh -h                         # afficher au cas où d'un problème 
 ```
 
 ---
@@ -70,7 +72,6 @@ Téléchargements/
 ├── Archives/
 ├── Documents/
 ├── Autres/
-└── file_tidier.log
 ```
 
 ---
@@ -90,8 +91,7 @@ Le mode `-t` (ou `--test`) affiche les actions sans effectuer de déplacement r�
 
 ```bash
 File-Tidier/
-├── file-tidier.sh      # Script Bash principal
+├── file.sh             # Script contenant le Bash principal
 ├── README.md           # Documentation utilisateur
-└── file_tidier.log     # Fichier journal (généré automatiquement après exécution)
 ```
 
