@@ -93,11 +93,11 @@ fi
 # Traitement de chaque dossier
 for dir in "${DIRS[@]}"; do
     if [ -d "$dir" ]; then
-        echo "📁 Traitement de : $dir"
+        echo "Traitement de : $dir"
         process_directory "$dir"
     else
-        echo "⚠️  Dossier introuvable : $dir"
+        echo "Dossier introuvable : $dir"
     fi
 done
 
-echo "✅ Tri terminé."
+echo "Tri terminé."
