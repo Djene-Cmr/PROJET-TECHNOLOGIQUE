@@ -93,7 +93,7 @@ parse_args() {
             -t|--test) DRY_RUN=true ;;
             -h|--help) show_help; exit 0 ;;
             /*) TARGET_DIR="$arg" ;;
-            *) echo "❌ Option inconnue : $arg"; show_help; exit 1 ;;
+            *) echo "Option inconnue : $arg"; show_help; exit 1 ;;
         esac
     done
 }
@@ -103,13 +103,13 @@ parse_args "$@"
 
 # Vérification que le dossier cible existe
 if [ ! -d "$TARGET_DIR" ]; then
-    echo "❌ Erreur : le dossier '$TARGET_DIR' n'existe pas."
+    echo "Erreur : le dossier '$TARGET_DIR' n'existe pas."
     exit 1
 fi
 
 # Initialisation du fichier log
 LOG_FILE="$TARGET_DIR/file_tidier.log"
-touch "$LOG_FILE" || { echo "❌ Erreur : impossible de créer le fichier log."; exit 1; }
+touch "$LOG_FILE" || { echo "Erreur : impossible de créer le fichier log."; exit 1; }
 
 # Création des sous-dossiers si besoin
 create_folders
@@ -117,4 +117,4 @@ create_folders
 # Lancement du traitement
 process_files
 
-echo "✅ Tri terminé. Voir le journal : $LOG_FILE"
+echo "Tri terminé. Voir le journal : $LOG_FILE"
