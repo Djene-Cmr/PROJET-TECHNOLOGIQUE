@@ -82,4 +82,3 @@ create_folders
 process_files
 
 echo "Tri terminé. Voir le journal : $LOG_FILE"
-.
