@@ -96,4 +96,4 @@ LOG_FILE="$TARGET_DIR/file_tidier.log"
 create_folders
 process_files
 
-echo "✅ Tri terminé. Voir le journal : $LOG_FILE"
+echo "Tri terminé. Voir le journal : $LOG_FILE"
