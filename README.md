@@ -13,7 +13,7 @@
 
 - **Jean Claude SIBAFEU** – Développement principal, structure du script, Tests  
 - **DJénè CAMARA** – Tests, gestion du dépôt Git, journalisation, README, support de soutenance 
-- **Mohamoud Touré** – Documentation(structure du script), support de soutenance 
+- **Mohamoud Touré** – Documentation,structure du script, support de soutenance 
 
 ---
 
